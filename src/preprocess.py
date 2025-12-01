@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import os
 
 data = pd.read_csv('../dataset/firstDS/legalCase.csv', index_col=["ID"])
 
@@ -28,3 +29,4 @@ print(data.duplicated().sum())
 
 print(data["label"].value_counts())
 print(data)
+data.to_csv("../dataset/preprocessed/cleaned_data.csv", index=False)
