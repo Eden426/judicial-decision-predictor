@@ -1,4 +1,4 @@
-
+from imblearn.over_sampling import RandomOverSampler
 import pandas as pd
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -18,9 +18,13 @@ vectorizer = TfidfVectorizer(
 )
 facts_train_idf = vectorizer.fit_transform(facts_train)
 facts_test_idf = vectorizer.transform(facts_test)
+# Handle class imbalance
+ros = RandomOverSampler(random_state=42)
+facts_train_idf_res, label_train_res = ros.fit_resample(facts_train_idf, label_train)
+
 
 model = LogisticRegression(max_iter=500, class_weight="balanced")
-model.fit(facts_train_idf, label_train)
+model.fit(facts_train_idf_res, label_train_res)
 
 
 
@@ -35,4 +39,6 @@ with open("../models/tf_idfVectorizer.pkl", "wb") as f:
     pickle.dump(vectorizer, f)
 
 print("Saved vectorizer!")
+
+
 
