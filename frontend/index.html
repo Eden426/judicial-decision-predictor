@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Court Outcome Predictor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="header">Court Outcome Predictor</h1>
+
+      <!-- Description Box -->
+      <div class="description-container">
+        <p class="general-text">
+  This tool analyzes a legal case summary and predicts whether the final decision is likely to be <strong>affirmed</strong> or <strong>reversed</strong>, and returns a confidence score.
+</p>
+<p class="general-text">
+  The model is trained on Supreme-court and lower-court decisions across jurisdictions and is intended to assist researchers and court staff — it does not provide legal advice.
+</p>
+
+
+        <div class="two-columns">
+          <div class="column">
+            <h3>What This System Does</h3>
+            <ul>
+              <li>Reads and processes your legal case summary</li>
+              <li>Uses a trained machine learning model</li>
+              <li>
+                Predicts if the outcome is <strong>affirmed</strong> or
+                <strong>reversed</strong>
+              </li>
+              <li>Shows a confidence level (%)</li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>What You Should Enter</h3>
+            <ul>
+              <li>Facts of the case</li>
+              <li>Parties involved</li>
+              <li>Key legal issue</li>
+              <li>Lower court decision</li>
+            </ul>
+          </div>
+
+          <div class="column">
+            <h3>Color Meaning Guide</h3>
+            <ul class="color-guide">
+              <li>
+                <span class="dot high"></span> <strong>Green</strong> = High
+                confidence (70–100%)
+              </li>
+              <li>
+                <span class="dot medium"></span> <strong>Yellow</strong> =
+                Medium confidence (40–69%)
+              </li>
+              <li>
+                <span class="dot low"></span> <strong>Red</strong> = Low
+                confidence (0–39%)
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- This closing tag FIXES EVERYTHING -->
+
+        <textarea
+          id="facts"
+          placeholder="Example Input:
+A defendant was convicted of fraud using evidence taken without a warrant. He appealed arguing the search violated the Fourth Amendment.
+
+Example Output:
+Predicted Outcome: Reversed
+confidence: how much the model is confident.
+
+--------------------------------------------
+Enter your case facts here..."
+        ></textarea>
+
+        <!-- Predict Button -->
+        <button onclick="predict()">Predict</button>
+
+        <!-- Result Area -->
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
